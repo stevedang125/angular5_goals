@@ -90,3 +90,39 @@
           {
             this.return_id = route.snapshot.params['id'];
           }
+6. Directives:
+  1. Definition: They are instructions that tell Angular to do some fun stuff
+    Example:
+      <router-outlet></router-outlet>
+      [routerLink]= "['/path']"
+  2. Types of Directive:
+  a) Attribute: expects an object in ""
+      Interact with the element it's on to change it's properties
+      Eg: ngClass expects an object so
+          [ngClass]="{'object': true, 'object': true,'andmore': true}"
+
+
+      [ngStyle]="{background: object.item}"
+
+          in the component.ts file, if we declared an object like this:
+          classes = {'blue': true, 'red': true, 'underline': true};
+          <p [ngClass]="classes">
+          simply pass the object ^^
+
+  b) Structure:
+      Change the structure of the HTML code: (my favvvvvvv :D)
+      Eg: *ngIf="true/false" or a Boolean variable
+       test = true; in component, then *ngIf="test"
+
+7. *ngFor? for loop !!! yess
+  1. cycle through a list and put the item out to the view.
+   Eg: <li *ngFor="let x in list"></li> (list: collection of objects)
+   {{x.item_from_list}}
+   {{x.item1_from_list}}
+   {{x.item2_from_list}}
+ 2. this will loop through an ARRAY, so in component:
+ goals = [
+  {small:  "Summer Internship.", big: "Full stack web dev. at Universal Studios.", color: "Green" },
+  {small:  "Maintain good grades !", big: "MIT", color: "Blue" },
+  {small:  "Be more healthy.", big: "Get buff", color: "Red" }
+ ]

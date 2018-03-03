@@ -16,19 +16,13 @@ export class HomeComponent implements OnInit {
 // will be listening for this customEvent.
 @Output() customEvent = new EventEmitter();
 
-  homeTitle = "Welcome to my goal list.";
-  myString = "A goal without a plan is just a wish. (Antoine de Saint-Exupéry)";
-  myBoolean = true;
+  homeTitle = "Welcome to my goal list!";
 
-  clickme(e) {
-    alert(e);
-    console.log(e.toString());
-  }
 
-  fireTheCustomEvent(e)
-  {
-    this.customEvent.emit(e);
-  }
+
+
+
+
 
   constructor() { }
 
