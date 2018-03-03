@@ -10,18 +10,37 @@
 </header>
 <section id="main">
 
-  <app-home [propertyGoal]="goal" ></app-home>
+  <app-home [propertyGoal]="goal" (customEvent)="customFunction($event)" ></app-home>
 </section>
 
+<!-- @Output custom event binding: -->
 
-<!-- [custom Property] = "object/model in component.ts"  -->
-<!-- => [propertyGoal]="goal" -->
+        <!-- (customEvent)="customFunction($event)" -->
 
-<!-- passing the data in the object "goal" into [propertyGoal]
-so the HomeComponent can get the data out of this [propertyGoal] -->
+        <!-- ****************** SUPER IMPORTAN part: ********************************* -->
+        <!-- the HomeComponent will need to add these in home.component.ts/export class
+        import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
+        @Output() customEvent = new EventEmitter();
+        fireTheCustomEvent(e) this is a (click)="fireTheCustomEvent($event)" for the view
+          {
+            this.customEvent.emit(e);
+          }
 
-<!-- the HomeComponent will need to add these in home.component.ts/export class
-import { Component, OnInit , Input} from '@angular/core';
-@Input() propertyGoal; -->
+        -->
+        <!-- ******************************************************************* -->
 
-<!-- in the HomeComponent's view, use propertyGoal to access object goal variables -->
+<!-- @Input custom property binding: -->
+
+        <!-- [custom Property] = "object/model in component.ts"  -->
+        <!-- => [propertyGoal]="goal" -->
+
+        <!-- passing the data in the object "goal" into [propertyGoal]
+        so the HomeComponent can get the data out of this [propertyGoal] -->
+
+        <!-- ****************** SUPER IMPORTAN part: ********************************* -->
+        <!-- the HomeComponent will need to add these in home.component.ts/export class
+        import { Component, OnInit , Input} from '@angular/core';
+        @Input() propertyGoal; -->
+        <!-- ******************************************************************* -->
+
+        <!-- in the HomeComponent's view, use propertyGoal to access object goal variables -->
