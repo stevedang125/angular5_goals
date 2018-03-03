@@ -10,7 +10,7 @@ import { DirectoryComponent } from './directory/directory.component';
 // import the routes library, create the routes, add RouterModule.forRoot(appRoutes)
 // to imports array. enjoy the routes :D
 const appRoutes: Routes = [
-  { path: 'directory', component: DirectoryComponent },
+  { path: 'directory/:id', component: DirectoryComponent },
   { path: '', component: HomeComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

@@ -3,8 +3,13 @@
   <h6>{{motivation}}</h6>
   <nav>
     <ul>
-      <li>Nav bar link</li>
-      <li>Nav bar link</li>
+      <!-- Very slow approach, reload every times, use routerLink from angular -->
+      <!-- <li> <a href="/">Home</a> </li>
+      <li> <a href="/directory">Directory</a> </li> -->
+
+      <li> <a [routerLink]="['/']">Home</a> </li>
+      <li> <a [routerLink]="['/directory']">Directory</a> </li>
+
     </ul>
   </nav>
 </header>

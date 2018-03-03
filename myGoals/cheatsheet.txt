@@ -54,3 +54,39 @@
       FormsModule,
       RouterModule.forRoot(appRoutes)
     ],;
+
+
+4. After some css fun, add links to the nav bar: [routerLink]="['/pathInHere']"
+
+   by using routerLink from Angular, so fast, yes so efficient <3
+   <li> <a [routerLink]="['/']">Home</a> </li>
+   <li> <a [routerLink]="['/directory']">Directory</a> </li>
+
+5. Route Params: (import ActivatedRoute from angular/router in app.module.ts)
+
+  import the ActivatedRoute library to the root app.module.ts and
+  the component you want to get the route params(this case directory.component.ts)
+  and into the constructor
+        constructor(private route: ActivatedRoute)
+        {
+          this.return_id = route.snapshot.params['id'];
+        }
+
+  in the path, give the params a name:( like this path: 'directory/:id')
+        const appRoutes: Routes = [
+          { path: 'directory/:id', component: DirectoryComponent },
+          { path: '', component: HomeComponent },
+          { path: '**', redirectTo: '', pathMatch: 'full' }
+        ];
+
+  directory.component.ts
+
+        import { ActivatedRoute } from '@angular/router';
+        export class DirectoryComponent implements OnInit {
+          // declare a var to assign the params to it.(return_id in this case)
+          return_id: string;
+
+          constructor(private route: ActivatedRoute)
+          {
+            this.return_id = route.snapshot.params['id'];
+          }
