@@ -208,3 +208,30 @@
 
         * in the component:
          initialize the variable to be change, in this case: term: string;
+
+9.   Services: injected individually: (providers)
+     With angular 5, the service is added automatically to the
+     app.module using this command: ng g s -m app.module﻿
+
+        Component1 : Do this ----\
+                                  |>----- both do one same job A connect to the data
+        Component2: Do that -----/
+        => don't duplicate your code because that'll be more work load;
+        => update and maintain would be bad >__<
+
+        * generate a services component: ng g s logging, this will be the logging service
+          the logic in logging.service.ts will get injected into home, directory components,
+          whichever component that need to use the service
+
+        * component.ts:
+          import { LoggingService } from '../logging.service';
+          constructor(private logger: LoggingService)
+          providers: [ LoggingService ]
+          create a method listen to a click event in the view
+          { this.logger.<method_in_service.js>()}
+
+        * view/template:
+          event binding by (click)="method()"
+
+        * Good stuff:
+          Array User: {{logger.users}}
