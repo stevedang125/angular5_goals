@@ -8,13 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DirectoryComponent implements OnInit {
 
-  // return_id: string;
-  // classes = {'blue': true, 'red': false, 'underline': true};
-  // test = false;
-  // constructor(private route: ActivatedRoute)
-  // {
-  //   this.return_id = route.snapshot.params['id'];
-  // }
+  term: string;
 
   goals = [
    {small:  "Summer Internship.", big: "Full stack web dev. at Universal Studios.", color: "Green" },

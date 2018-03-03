@@ -1,46 +1,20 @@
 
+<!-- *ngFor -->
 <h2>Goal Listing</h2>
 
 <ul id="goal-listing">
-  <li *ngFor="let goal of goals">
 
-    <div class="single-goal">
+  <div class="container">
+    <label>Search by lucky color:</label>
+    <input type="text" [(ngModel)] = "term">
+  </div>
+
+  <li *ngFor="let goal of goals | filter:term">
+    <div>
         <label>Lucky Color: </label>
         <span [ngStyle]="{background: goal.color}" >{{goal.color}}</span><br>
-        <label>Small Goal: </label><span>{{goal.small}}</span><br>
+        <label>Small Goal: </label><span>{{goal.small | titlecase}}</span><br>
         <label>Big Goal: </label><span>{{goal.big}}</span>
     </div>
-
   </li>
 </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="container">
-  <h2>Directory Page</h2>
-
-  <p [ngClass]="classes">
-    directory works!
-  </p>
-
-  <p *ngIf = "test">Only show if test is true</p>
-  <p *ngIf = "test">It won't show :D</p>
-
-</div>
-
-
-<style media="screen">
-  .blue{color: blue;}
-  .red{color: red;}
-  .underline{text-decoration: underline;}
-</style> -->

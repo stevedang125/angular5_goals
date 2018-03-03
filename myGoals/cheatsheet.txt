@@ -1,4 +1,4 @@
-
+1. Data binding, Two ways data binding:
 
 2.  app.component.html
 
@@ -126,3 +126,85 @@
   {small:  "Maintain good grades !", big: "MIT", color: "Blue" },
   {small:  "Be more healthy.", big: "Get buff", color: "Red" }
  ]
+
+8. Pipes and Custom Pipes:
+  1a) String: Built in:(uppercase, lowercase, slice:start:stop) (stop - start = how many letters you want.)
+
+                put pipe | after the data you want to output to the view/template
+                Eg:   {{goal.small | uppercase}} {{goal.color | slice:1:3}}
+                      slice takes parameters: {{goal.color | slice:1}} => "Green" to "_ r e e n"
+                                              {{goal.color | slice:1:3}} => "Green" to "_ r e _ _ _"
+                      what about 3 params? {{goal.color | slice:1:3:5}} => it didn't work =))
+
+                Eg:   2 pipes at once!
+                      {{goal.big | lowercase | slice:1:3}}
+
+                Eg: <label>Test json pipe: </label><span>{{goal | json}}</span>
+                   => { "small": "Summer Internship.", "big": "Full stack web dev.
+                    at Universal Studios.", "color": "Green" }
+                    <span>{{goal.small | titlecase}}</span>
+  1b)  Number: Built in(number:'1.2-3', percent, currency, currency: 'GBP')
+            Eg: {{ 5.678 | number:'1.2-3' }} => 5.678
+                {{ .25 | percent }} => 25%
+                {{ .25 | currency }} => $.25
+                {{ .25 | currency: 'EUR':code }} =>Euro.25
+
+  1c)  Date: (date:short,middium,longDate)
+             component.ts: public date = new Date();
+             template:
+                {{ date | date:'short' }} => 03/03/2799, 1:00 AM, to the future
+                {{ date | date:'shortDate' }} => 03/03/2799
+                {{ date | date:'shortTime' }} => 1:00 AM
+
+
+  2) Custom (yay): filter.pipe.ts,ng g piple <custom_pipe_name>
+
+          in project_name/src/app run: ng g piple <custom_pipe_name>
+          Eg:  {{goal.big | custom_pipe_name}}
+
+          in filter.pipe.ts:
+                    name  type  (this is what you called in the view, "term")
+          transform(value: any, args?: any): any {
+            return null;
+          }
+          either this true/false,
+                  export class FilterPipe implements PipeTransform {
+                    transform(goals: any, term: any): any {
+                      // Check if search term is undefined
+                      if(term === undefined) return goals;
+                      // return updated goals array
+                      return goals.filter(function(return_val){
+                        return return_val.small.toLowerCase().includes(term.toLowerCase());
+                    })
+          if term is match, return_val would hold that and get return back to the view
+          if not just return the whole array
+
+    Custom Filter Part2:
+        * in src/app create the filter.pipe.ts by ng g pipe filter
+            import { Pipe, PipeTransform } from '@angular/core';
+
+            @Pipe({
+              name: 'filter'
+            })
+
+        * taking in an array: goals
+          taking in a search key: term
+          using the filter(check if the term is match or not)
+          if true: return it to the view.
+
+            transform(goals: any, term: any): any {
+              // Check if search term is undefined
+              if(term === undefined) return goals;
+              // return updated goals array
+              return goals.filter(function(return_val){
+                return return_val.color.toLowerCase().includes(term.toLowerCase());
+            })
+            }
+
+
+        * in the view:
+          <input type="text" [(ngModel)] = "term"> // two ways binding heyyyyy
+          <li *ngFor="let goal of goals | filter:term"> // use the custom filter
+
+        * in the component:
+         initialize the variable to be change, in this case: term: string;
