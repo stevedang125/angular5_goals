@@ -10,5 +10,12 @@ import { HomeComponent } from './home/home.component';
 export class AppComponent {
   title = 'My Goal List';
   motivation = '"A goal without a plan is just a wish." (Antoine de Saint-Exupéry)';
+  
+
+  goal = {
+    small: "Get an internship.",
+    big: "Graduate and get a Job.",
+    color: "Green"
+  };
 
 }

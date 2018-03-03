@@ -10,5 +10,18 @@
 </header>
 <section id="main">
 
-  <app-home></app-home>
+  <app-home [propertyGoal]="goal" ></app-home>
 </section>
+
+
+<!-- [custom Property] = "object/model in component.ts"  -->
+<!-- => [propertyGoal]="goal" -->
+
+<!-- passing the data in the object "goal" into [propertyGoal]
+so the HomeComponent can get the data out of this [propertyGoal] -->
+
+<!-- the HomeComponent will need to add these in home.component.ts/export class
+import { Component, OnInit , Input} from '@angular/core';
+@Input() propertyGoal; -->
+
+<!-- in the HomeComponent's view, use propertyGoal to access object goal variables -->
