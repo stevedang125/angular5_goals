@@ -10,7 +10,9 @@
 </header>
 <section id="main">
 
-  <app-home [propertyGoal]="goal" (customEvent)="customFunction($event)" ></app-home>
+  <!-- <app-home [propertyGoal]="goal" (customEvent)="customFunction($event)" ></app-home> -->
+  <router-outlet ></router-outlet>
+
 </section>
 
 <!-- @Output custom event binding: -->

@@ -1,0 +1,56 @@
+
+
+2.  app.component.html
+
+      <app-home [propertyGoal]="goal" (customEvent)="customFunction($event)" ></app-home>
+
+      <!-- @Output custom event binding: -->
+
+              <!-- (customEvent)="customFunction($event)" -->
+
+              <!-- ****************** SUPER IMPORTAN part: ********************************* -->
+              <!-- the HomeComponent will need to add these in home.component.ts/export class
+              import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
+              @Output() customEvent = new EventEmitter();
+              fireTheCustomEvent(e) this is a (click)="fireTheCustomEvent($event)" for the view
+                {
+                  this.customEvent.emit(e);
+                }
+
+              -->
+              <!-- ******************************************************************* -->
+
+              <!-- <button (click)="fireTheCustomEvent($event)" >Click me !</button> -->
+
+      <!-- @Input custom property binding: -->
+
+              <!-- [custom Property] = "object/model in component.ts"  -->
+              <!-- => [propertyGoal]="goal" -->
+
+              <!-- passing the data in the object "goal" into [propertyGoal]
+              so the HomeComponent can get the data out of this [propertyGoal] -->
+
+              <!-- ****************** SUPER IMPORTAN part: ********************************* -->
+              <!-- the HomeComponent will need to add these in home.component.ts/export class
+              import { Component, OnInit , Input} from '@angular/core';
+              @Input() propertyGoal; -->
+              <!-- ******************************************************************* -->
+
+              <!-- in the HomeComponent's view, use propertyGoal to access object goal variables -->
+
+3. Setting up route(app.module.ts, app.component.ts)
+  Step 1: import the library for route, create routes, import RouterModule.forRoot(appRoutes) into import:[]
+  Step 2: import route to app.component.ts import { RouterModule, Routes } from '@angular/router';
+  Step 3: use <route_outlet></route_outlet> tag in the app view
+
+  import { RouterModule, Routes } from '@angular/router';
+  const appRoutes: Routes = [
+    { path: 'directory', component: DirectoryComponent },
+    { path: '', component: HomeComponent },
+    { path: '**', redirectTo: '', pathMatch: 'full' }
+  ];
+    imports: [
+      BrowserModule,
+      FormsModule,
+      RouterModule.forRoot(appRoutes)
+    ],;
