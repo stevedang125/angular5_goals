@@ -1,0 +1,78 @@
+<p>
+  {{homeTitle}}
+  
+</p>
+
+<!-- Two ways binding: -->
+<div class="container">
+
+  <table>
+    <td>
+      <tr>
+        <label>Small Goal:</label>
+        <input [(ngModel)]="goal.small"/>
+      </tr>
+    </td>
+
+    <td>
+      <tr>
+        <label>Big Goal:</label>
+        <input [(ngModel)]="goal.big"/> <br>
+      </tr>
+    </td>
+
+    <td>
+      <tr>
+        <label>Lucky Color:</label>
+        <input [(ngModel)]="goal.color"/> <br>
+      </tr>
+    </td>
+  </table>
+
+  <p>{{goal.small}}</p>
+  <p>{{goal.big}}</p>
+  <p>{{goal.color}}</p>
+
+</div>
+
+<!-- ******* SUPER IMPORTANT ngModel is in FormsModule now *********** -->
+<!-- goal.small got updated on the fly :D  -->
+
+<!-- import these into app.module.ts
+
+      import { FormsModule } from '@angular/forms';
+
+      imports: [
+        BrowserModule,
+        FormsModule
+      ], -->
+<!-- ******************************************************************** -->
+
+
+<!-- One way binding: -->
+
+<!-- <input [value]="myString" placeholder="empty for now" /> <br>
+<input [required] = "myBoolean" placeholder="nothing here"/>
+<button (click) = "clickme(myBoolean)" >Click me</button> -->
+
+<!-- Data into the View: -->
+      <!-- String interpolation: -->
+          <!-- input a string from component to the view html -->
+          <!-- {{homeTitle}} -->
+
+      <!-- Property binding -->
+          <!-- value={{myString}} , value="{{myString}}", [value]="myString" :
+          go into home.component and look for myString,
+          and input (data)->what contains in myString to the view .html  -->
+
+<!-- Data out of the View: -->
+      <!-- Event binding -->
+      <!-- (click)="function_name()" call an empty function in component,
+      (click)="function_name($event)", pass an event as a parameter,
+      (click)="function_name(myString)", pass myString input to the function. -->
+
+<!-- Both ways data binding: -->
+      <!-- <input [(ngModel)]=""> -->
+      <!-- updates the model/object in the component class
+      updates any reference to the model/object in the view/template @ the same time
+      {{model}} -->
