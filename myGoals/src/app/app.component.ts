@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 // import { ROUTER_DIRECTIVES } from '@angular/router';
 
 @Component({
@@ -13,7 +14,10 @@ export class AppComponent {
   title = 'My Goal List';
   motivation = '"A goal without a plan is just a wish." (Antoine de Saint-Exupéry)';
 
-  
+
+  constructor(private httpClient: HttpClient){
+
+  }
 
 
   // goal = {

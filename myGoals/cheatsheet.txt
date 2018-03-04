@@ -235,3 +235,33 @@
 
         * Good stuff:
           Array User: {{logger.users}}
+
+10.   HTTP Services:(providers) https://mygoals-angular5.firebaseio.com/.json
+        * Create a firebase account(super fast if you already have a gmail ^^)
+          DataBase/Rules/ set "true" for both ".read" and ".write" then public
+          Create a new project or DataBase, import the .json file from pc
+          Copy the link https://mygoals-angular5.firebaseio.com/
+          and add .json at the end of it.
+            https://mygoals-angular5.firebaseio.com/.json
+
+        * Create the http service: ng g s data (src/app)
+          data.service.ts:
+            import { HttpClient } from '@angular/common/http';
+            constructor(private http: HttpClient) { }
+            // Create an export function to get the .json file from database
+            fetchData(){
+              return this.http.get('https://mygoals-angular5.firebaseio.com/.json');
+            }
+        * Component:
+            import { HttpClient } from '@angular/common/http';
+            import { DataService } from '../data.service';
+
+            providers: [ LoggingService, DataService ]
+            goals: any[];
+            constructor(private route: ActivatedRoute,
+                      private logger: LoggingService,
+                      private dataService: DataService)
+            ngOnInit()
+            {
+              this.dataService.fetchData().subscribe((data) => this.goals = data as any);
+            }// end ngOnInit
