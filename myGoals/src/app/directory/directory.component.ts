@@ -14,6 +14,12 @@ declare var firebase: any;
 })
 export class DirectoryComponent implements OnInit {
 
+    lucky_color:any;
+    big_goal:any;
+    small_goal:any;
+    index:any;
+
+
     term: string;
     // goals: any[];
     goals = [];
@@ -25,9 +31,9 @@ export class DirectoryComponent implements OnInit {
 
     }
 
-    log_service(){
-      this.logger.log();
-    }
+    // log_service(){
+    //   this.logger.log();
+    // }
 
     ngOnInit() {
       // this.dataService.fetchData().subscribe((data) => this.goals = data as any);
@@ -38,9 +44,11 @@ export class DirectoryComponent implements OnInit {
 
     delete_event_listener(){
       firebase.database().ref('/').on('child_removed', (snapshot) =>{
-        // console.log('Just REMOVED a child !!!!');
+        console.log('Just REMOVED a child !!!!');
+        var object = snapshot.val();
         // console.log(snapshot.val());
-        this.goals.splice(this.goals.indexOf(snapshot.val(), snapshot.index))
+        console.log(object.index);
+        this.goals.splice(this.goals.indexOf(object, object.index))
       });
     }
 
@@ -61,11 +69,12 @@ export class DirectoryComponent implements OnInit {
     // }
 
     add_a_goal(index, small, big, color){
+      console.log('add: '+index);
       firebase.database().ref('/').child(index).set({index: index, small: small, big: big, color: color});
     }
 
     delete_a_goal(number){
-      // console.log(number);
+      console.log('delete: '+number);
       firebase.database().ref('/').child(number).remove();
     }
 

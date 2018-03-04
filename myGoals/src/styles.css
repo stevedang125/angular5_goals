@@ -28,7 +28,8 @@ body{
   font-family: verdana;
   letter-spacing: 0.1em;
   color: #606060;
-  background: #eee;
+  /* background: #eee; */
+  background: lightblue;
   padding: 20px;
 }
 
@@ -87,7 +88,7 @@ nav a:hover{
   background: #fdfdfd;
   padding: 20px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,0.2),0 1px 1px 0 rgba(0,0,0,0.14),0 2px 1px -1px rgba(0,0,0,0.12);
-  border-radius: 2px;
+  border-radius: 4px;
   width: 100%;
   max-width: 740px;
   box-sizing: border-box;
@@ -157,7 +158,7 @@ nav a:hover{
   width: 240px;
 }
 
-#add-goal button{
+/* #add-goal button{
   background: #0288d1;
   color: #eee;
   padding: 8px 10px;
@@ -167,4 +168,15 @@ nav a:hover{
   letter-spacing: 1px;
   cursor: pointer;
   float: right;
+} */
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

@@ -7,7 +7,7 @@ import { LoggingService } from '../logging.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [LoggingService]
+  providers: [ LoggingService ]
 })
 
 
@@ -30,15 +30,15 @@ export class HomeComponent implements OnInit {
 
   constructor(private logger: LoggingService) { }
 
-  logging(){
-    this.logger.log();
-  }
+  // logging(){
+  //   this.logger.log();
+  // }
 
 
   // call the getFirstUser from the service: logger in the constructor
   // so short and fast !!
   ngOnInit() {
-    this.user = this.logger.getFirstUser();
+    //this.user = this.logger.getFirstUser();
   }
 
 }

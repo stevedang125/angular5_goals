@@ -18,12 +18,14 @@
         <label>Small Goal: </label><span>{{goal.small | titlecase}}</span><br>
         <label>Big Goal: </label><span>{{goal.big}}</span><br>
         <br>
-        <button type="button" name="button" (click)="delete_a_goal(goal.index)" >Delete</button>
+        <p align="right">
+        <button class="btn btn-danger" type="button" (click)="delete_a_goal(goal.index)" >Delete</button>
+        </p>
     </div>
   </li>
 </ul>
 
-<div id="add-goal" name="add">
+<div id="add-goal" >
   <label>Goal Number: </label>
   <input type="text" [(ngModel)] = "index"><br><br>
   <label>Small Goal: </label>
@@ -33,6 +35,6 @@
   <label>Lucky Color: </label>
   <input type="text" [(ngModel)] = "lucky_color" ><br><br>
 </div>
-<button (click)="add_a_goal(index, small_goal, big_goal, lucky_color)">Add Goal</button>
+<button class="btn btn-primary" type="button" (click)="add_a_goal(index, small_goal, big_goal, lucky_color)">Add Goal</button>
 
-<button  (click)="log_service()">Click me to log!!</button>
+<!-- <button  (click)="log_service()">Click me to log!!</button> -->
