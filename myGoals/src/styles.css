@@ -5,10 +5,18 @@
   font-family: sans-serif;
 } */
 
-.search div{
+/* .search {
   border: 1px solid #AAA;
   padding: 30px;
   display: block;
+  border-radius: 2px;
+} */
+
+
+#search{
+  margin-top: 50px;
+  background: #e7e7e7;
+  padding: 20px;
   border-radius: 2px;
 }
 

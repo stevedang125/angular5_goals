@@ -4,19 +4,35 @@
 
 <ul id="goal-listing">
 
-  <div class="container">
+  <div id="search">
     <label>Search by lucky color:</label>
     <input type="text" [(ngModel)] = "term">
   </div>
 
-  <li *ngFor="let goal of goals | filter:term">
+  <li *ngFor="let goal of goals | filter:term; let i = index">
     <div>
+        <label>Goal Number: </label>
+        <span>{{goal.index}}</span><br>
         <label>Lucky Color: </label>
-        <span [ngStyle]="{background: goal.color}" >{{goal.color}}</span><br>
+        <span name="thiscolor" [ngStyle]="{background: goal.color}" >{{goal.color}}</span><br>
         <label>Small Goal: </label><span>{{goal.small | titlecase}}</span><br>
-        <label>Big Goal: </label><span>{{goal.big}}</span>
+        <label>Big Goal: </label><span>{{goal.big}}</span><br>
+        <br>
+        <button type="button" name="button" (click)="delete_a_goal(goal.index)" >Delete</button>
     </div>
   </li>
 </ul>
+
+<div id="add-goal" name="add">
+  <label>Goal Number: </label>
+  <input type="text" [(ngModel)] = "index"><br><br>
+  <label>Small Goal: </label>
+  <input type="text" [(ngModel)] = "small_goal" ><br><br>
+  <label>Big Goal: </label>
+  <input type="text" [(ngModel)] = "big_goal" ><br><br>
+  <label>Lucky Color: </label>
+  <input type="text" [(ngModel)] = "lucky_color" ><br><br>
+</div>
+<button (click)="add_a_goal(index, small_goal, big_goal, lucky_color)">Add Goal</button>
 
 <button  (click)="log_service()">Click me to log!!</button>

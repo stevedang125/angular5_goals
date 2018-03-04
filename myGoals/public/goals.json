@@ -1,17 +1,38 @@
 [
  {
+   "index": "0",
    "small":  "Summer Internship.",
    "big": "Full stack web dev. at Universal Studios.",
    "color": "Green"
  },
  {
+   "index": "1",
    "small":  "Maintain good grades !",
    "big": "M.I.T.",
    "color": "Blue"
  },
  {
-   "small":  "Be more healthy.",
+   "index": "2",
+   "small":  "Work out three days a week.",
    "big": "Get buff.",
+   "color": "Red"
+ },
+ {
+   "index": "3",
+   "small":  "Eat Healthier",
+   "big": "Become a vegan.",
+   "color": "Yellow"
+ },
+ {
+   "index": "4",
+   "small":  "Train my sleep schedule",
+   "big": "Millitary Daily Schedule",
+   "color": "Orange"
+ },
+ {
+   "index": "5",
+   "small":  "Run faster.",
+   "big": "The fastest man alive. The Flash !!",
    "color": "Red"
  }
 ]

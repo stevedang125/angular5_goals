@@ -14,40 +14,59 @@ declare var firebase: any;
 })
 export class DirectoryComponent implements OnInit {
 
-  term: string;
-  // goals: any[];
-  goals = [];
+    term: string;
+    // goals: any[];
+    goals = [];
 
-// // The data here will be moved into a .json file in public for HTTP practice
-// // The json file is in FireBase now.
-//   goals = [
-//    {small:  "Summer Internship.", big: "Full stack web dev. at Universal Studios.", color: "Green" },
-//    {small:  "Maintain good grades !", big: "M.I.T.", color: "Blue" },
-//    {small:  "Be more healthy.", big: "Get buff.", color: "Red" }
-//   ];
+    constructor(private route: ActivatedRoute,
+    private logger: LoggingService,
+    private dataService: DataService)
+    {
 
-  constructor(private route: ActivatedRoute,
-              private logger: LoggingService,
-              private dataService: DataService)
-  {
+    }
 
-  }
+    log_service(){
+      this.logger.log();
+    }
 
-  log_service(){
-    this.logger.log();
-  }
+    ngOnInit() {
+      // this.dataService.fetchData().subscribe((data) => this.goals = data as any);
+      // this.dataService.fetchData().subscribe((data) => console.log(data));
+      this.fbGetData();
+      this.delete_event_listener();
+    }// end ngOnInit
 
-  ngOnInit() {
-    // this.dataService.fetchData().subscribe((data) => this.goals = data as any);
-    //this.dataService.fetchData().subscribe((data) => console.log(data));
-    this.fbGetData();
+    delete_event_listener(){
+      firebase.database().ref('/').on('child_removed', (snapshot) =>{
+        // console.log('Just REMOVED a child !!!!');
+        // console.log(snapshot.val());
+        this.goals.splice(this.goals.indexOf(snapshot.val(), snapshot.index))
+      });
+    }
 
-  }// end ngOnInit
+    fbGetData(){
+      firebase.database().ref('/').on('child_added', (result) => {
+        // console.log('Just ADDED a child !!!!');
+        // console.log(result.val());
+        this.goals.push(result.val())
+      });
+    }
 
-  fbGetData(){
-    firebase.database().ref('/').on('child_added', (result) => {
-      this.goals.push(result.val())
-    });
-  }
+    // this add a goal version works too, push() will generate an unique id
+    // instead for index id(just for fun for now)
+    // fbAddData(small, big, color){
+    //   // firebase.database().ref('/').push({small: small, big: big, color: color}).child('8');
+    //   // firebase.database().ref('/').child('9').set({small: small, big: big, color: color});
+    //   this.getkey = firebase.database().ref('/').push({small: small, big: big, color: color}).getKey();
+    // }
+
+    add_a_goal(index, small, big, color){
+      firebase.database().ref('/').child(index).set({index: index, small: small, big: big, color: color});
+    }
+
+    delete_a_goal(number){
+      // console.log(number);
+      firebase.database().ref('/').child(number).remove();
+    }
 
 }

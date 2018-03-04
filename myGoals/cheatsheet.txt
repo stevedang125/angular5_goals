@@ -302,8 +302,42 @@
             });
           }
 
-12. Post an object to db:
-        *
+12. Post/Delete an object to db:
+        Post/Add a goal:
+          * Template:
+            Create input form, in <input [(ngModel)] ="goal">
+            <button (click)="custom_function(goal)">Add
 
+          * Component: // push() will generate an unique ID
+            Add the custom_function(id, goal){
+              //firebase.database().ref('/').push({name_goal: goal});
+              firebase.database().ref('/').child(id).set({id: id, name_goal: goal});
+            }
 
-        
+        Add/Post event listener:
+            Turn the child_added event listener on to update the goal to list.
+            add_a_goal(){
+              firebase.database().ref('/').on('child_added', (result)=>{
+                  this.goals.push(result.val());
+              });
+            }
+
+        Delete a goal:
+          * Template:
+            Create a delete button with a click event and pass a param to component:
+
+          * Component:
+            Use the same (id) retrieved from the click event param to delete a child
+            firebase.database().ref('/').child(id).remove();
+
+        Delete event listener: Used JavaScript methods:
+          * arrays.splice(arrays.indexOf(object, index));
+
+          * An object will return as "snapshot" when a child_removed:
+          delete_event_listener(){
+            firebase.database().ref('/').on('child_removed', (snapshot) =>{
+              // console.log('Just REMOVED a child !!!!');
+              // console.log(snapshot.val());
+              this.goals.splice(this.goals.indexOf(snapshot.val(), snapshot.index))
+            });
+          }
