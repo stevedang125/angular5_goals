@@ -4,6 +4,8 @@ import { LoggingService } from '../logging.service';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
 
+declare var firebase: any;
+
 @Component({
   selector: 'app-directory',
   templateUrl: './directory.component.html',
@@ -13,7 +15,8 @@ import { DataService } from '../data.service';
 export class DirectoryComponent implements OnInit {
 
   term: string;
-  goals: any[];
+  // goals: any[];
+  goals = [];
 
 // // The data here will be moved into a .json file in public for HTTP practice
 // // The json file is in FireBase now.
@@ -35,9 +38,16 @@ export class DirectoryComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.dataService.fetchData().subscribe((data) => this.goals = data as any);
+    // this.dataService.fetchData().subscribe((data) => this.goals = data as any);
+    //this.dataService.fetchData().subscribe((data) => console.log(data));
+    this.fbGetData();
 
   }// end ngOnInit
+
+  fbGetData(){
+    firebase.database().ref('/').on('child_added', (result) => {
+      this.goals.push(result.val())
+    });
+  }
 
 }

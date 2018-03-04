@@ -265,3 +265,45 @@
             {
               this.dataService.fetchData().subscribe((data) => this.goals = data as any);
             }// end ngOnInit
+
+11.   Fire Base API:
+        * From Fire Base, get <> how to add FB to your web app:
+          get the code+script and add to the index.html file
+
+        * Real world: Fire Base will get hooked up in the services !! ^^
+
+        * Component:
+          declare var firebase: any;
+          // call this on start
+          ngOnInit() {
+            this.fbGetData();
+          }// end ngOnInit
+
+          // call firebase.database to connect to fire base db
+
+          // .ref(): provide a reference on which point, collection from db
+          // .ref('/'): at the root level
+          // .ref('/users/'): collection of users in db
+
+          // .on('child_added'): event listener, whenever a child is added,
+          // to this reference from the db, so from start up, it will
+          // show data from db, later on, if an object(or child) get added,
+          // this listener will fire and get the new data from db again.
+
+          // callback function(result): result here is what is retrieved from db
+          // call this fbGetData func. in ngOnInit to run it on start.
+
+          // result.val(): get the info we need instead for the maze :D
+          // push an object to array: array.push(object); (JavaScript method)
+
+          fbGetData(){
+            firebase.database().ref('/').on('child_added', (result) => {
+              this.goals.push(result.val())
+            });
+          }
+
+12. Post an object to db:
+        *
+
+
+        
